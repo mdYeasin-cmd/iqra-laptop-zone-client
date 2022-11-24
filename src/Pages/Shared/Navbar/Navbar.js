@@ -1,16 +1,32 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import logo from '../../../assets/Logo/logo.png';
 
 const Navbar = () => {
 
+    const activeMenuDesign = {
+        background: 'rgb(185 28 28)',
+        color: "#fff",
+        fontWeight: 'bold',
+        borderRadius: '6px'
+    }
+
+    const activePage = () => {
+        return ({ isActive }) => isActive ? activeMenuDesign : undefined;
+    }
+
     const navbarMenu = <>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/blog">Blog</Link></li>
-        <li><Link to="/dashboard">Dashboard</Link></li>
+        <li><NavLink style={activePage()} to="/">Home</NavLink></li>
+        <li><NavLink style={activePage()} to="/blog">Blog</NavLink></li>
+        <li><NavLink style={activePage()} to="/dashboard">Dashboard</NavLink></li>
     </>
 
+    
+
+    
+
     return (
-        <div className="navbar">
+        <div className="navbar pt-3">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -20,15 +36,19 @@ const Navbar = () => {
                         {navbarMenu}
                     </ul>
                 </div>
-                <Link to="/" className="btn btn-ghost normal-case text-xl">daisyUI</Link>
+                <Link to="/" className="flex items-center font-bold text-xl">
+                    <img className="w-11 mr-1" src={logo} alt="" />
+                    <span className="uppercase text-red-700">Iqra Laptop Zone</span>
+                </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal p-0">
+                <ul className="menu menu-horizontal p-0 font-semibold">
                     {navbarMenu}
                 </ul>
             </div>
             <div className="navbar-end">
-                <button className="btn">Log In</button>
+                <button className="btn bg-red-700 hover:bg-red-600 border-0 btn-sm mr-2">Sign Up</button>
+                <button className="btn bg-red-700 hover:bg-red-600 border-0 btn-sm">Log In</button>
             </div>
         </div>
     );
