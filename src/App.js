@@ -1,9 +1,11 @@
+import { RouterProvider } from 'react-router-dom';
 import './App.css';
+import { routes } from './routes/Routes/Routes';
 
 function App() {
   return (
-    <div>
-      
+    <div className="max-w-[1140px] mx-auto">
+      <RouterProvider router={routes}></RouterProvider>
     </div>
   );
 }
