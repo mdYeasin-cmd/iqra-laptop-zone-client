@@ -16,17 +16,13 @@ const Navbar = () => {
     }
 
     const navbarMenu = <>
-        <li><NavLink style={activePage()} to="/">Home</NavLink></li>
-        <li><NavLink style={activePage()} to="/blog">Blog</NavLink></li>
-        <li><NavLink style={activePage()} to="/dashboard">Dashboard</NavLink></li>
+        <li><NavLink className="mx-1" style={activePage()} to="/">Home</NavLink></li>
+        <li><NavLink className="mx-1" style={activePage()} to="/blog">Blog</NavLink></li>
+        <li><NavLink className="mx-1" style={activePage()} to="/dashboard">Dashboard</NavLink></li>
     </>
 
-    
-
-    
-
     return (
-        <div className="navbar pt-3">
+        <div className="navbar pt-3 max-w-[1140px] mx-auto">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
