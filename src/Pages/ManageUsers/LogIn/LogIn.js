@@ -5,6 +5,7 @@ import './LonIn.css';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import toast from 'react-hot-toast';
 import { GoogleAuthProvider } from 'firebase/auth';
+import saveUser from '../SaveUser/SaveUser';
 
 const LogIn = () => {
 
@@ -37,6 +38,11 @@ const LogIn = () => {
         .then(result => {
             const user = result.user;
             console.log(user);
+            const name = user.displayName;
+            const email = user.email;
+            const userRole = 'buyer';
+            saveUser(name, email, userRole);
+            navigate('/');
             toast.success('Successfully Log In');
         })
         .catch(error => {
