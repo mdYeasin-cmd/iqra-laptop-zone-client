@@ -1,11 +1,17 @@
 import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthProvider';
+import useUserRole from '../hooks/useUserRole';
 import Navbar from '../Pages/Shared/Navbar/Navbar';
 
 const DashboardLayout = () => {
 
     const {user} = useContext(AuthContext);
+    const [isUserRole, isUserLoading] = useUserRole(user?.email);
+
+    if(isUserLoading) {
+        return <h2>Loading...</h2>
+    }
 
     return (
         <div>
@@ -21,8 +27,22 @@ const DashboardLayout = () => {
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 text-base-content bg-slate-100">
                         {
-                            user && user.uid && <>
+                            user && user.uid && isUserRole === 'buyer' && <>
                                 <li><Link to="/dashboard/myOrders">My Orders</Link></li>
+                            </>
+                        }
+                        {
+                            user && user.uid && isUserRole === 'seller' && <>
+                                <li><Link to="/dashboard/myOrders">Add A Product</Link></li>
+                                <li><Link to="/dashboard/myOrders">My Products</Link></li>
+                                <li><Link to="/dashboard/myOrders">My Buyers</Link></li>
+                            </>
+                        }
+                        {
+                            user && user.uid && isUserRole === 'admin' && <>
+                                <li><Link to="/dashboard/myOrders">All Sellers</Link></li>
+                                <li><Link to="/dashboard/myOrders">All Buyers</Link></li>
+                                <li><Link to="/dashboard/myOrders">Reported Items</Link></li>
                             </>
                         }
                     </ul>
