@@ -1,66 +1,94 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/AuthProvider';
 
 const SignUp = () => {
+
+    const { createUser } = useContext(AuthContext);
+
+    const handleSignUp = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const name = form.name.value;
+        const photoURL = form.photoURL.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        const userRole = form.userRole.value;
+
+        createUser(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => console.error(error));
+
+    }
+
     return (
-        <div className="w-2/5 mx-auto shadow-2xl p-8 my-10 rounded-lg"> 
-            <h2 className="text-3xl font-semibold text-center">Sign Up</h2>
-            <form>
+        <div className="w-2/5 mx-auto shadow-2xl p-8 my-10 rounded-lg">
+            <h2 className="text-3xl w-4/12 mx-auto py-2 rounded-lg font-semibold text-center bg-red-200">Sign Up</h2>
+            <form onSubmit={handleSignUp}>
+
                 <div className="form-control w-full">
                     <label className="label">
                         <span className="label-text">Name</span>
                     </label>
                     <input
                         type="text"
+                        name="name"
                         className="input input-bordered w-full"
                     />
                 </div>
+
                 <div className="form-control w-full">
                     <label className="label">
                         <span className="label-text">Phot URL</span>
                     </label>
                     <input
                         type="text"
+                        name="photoURL"
                         className="input input-bordered w-full"
                     />
                 </div>
+
                 <div className="form-control w-full">
                     <label className="label">
                         <span className="label-text">Email</span>
                     </label>
                     <input
                         type="email"
+                        name="email"
                         className="input input-bordered w-full"
                     />
                 </div>
+
                 <div className="form-control w-full">
                     <label className="label">
                         <span className="label-text">Password</span>
                     </label>
                     <input
                         type="password"
+                        name="password"
                         className="input input-bordered w-full"
                     />
                 </div>
-                <div className="form-control w-full">
-                    
-                    <div className="flex items-center">
-                    <input type="radio" id="html" name="userRole" value="HTML" />
-                    <label for="html">Buyer</label><br />
-                    <input type="radio" id="css" name="userRole" value="CSS" />
-                    <label for="css">Seller</label><br />
+
+                <div className="form-control text-center mt-4">
+
+                    <p>Choose your account type?</p>
+
+                    <div className="flex items-center justify-center">
+
+                        <input className="ml-2" type="radio" id="buyer" name="userRole" value="buyer" defaultChecked />
+                        <label className="mr-3 ml-1" htmlFor="buyer">Buyer</label>
+                        <br />
+                        <input className="mr-1" type="radio" id="seller" name="userRole" value="seller" />
+                        <label htmlFor="seller">Seller</label>
+
                     </div>
 
-
-
-                    {/* <label className="label">
-                        <span className="label-text">Password</span>
-                    </label>
-                    <input
-                        type="password"
-                        className="input input-bordered w-full"
-                    /> */}
                 </div>
+
                 <div className="form-control w-full">
                     <input
                         type="submit"
