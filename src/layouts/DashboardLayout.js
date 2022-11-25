@@ -33,9 +33,9 @@ const DashboardLayout = () => {
                         }
                         {
                             user && user.uid && isUserRole === 'seller' && <>
-                                <li><Link to="/dashboard/myOrders">Add A Product</Link></li>
-                                <li><Link to="/dashboard/myOrders">My Products</Link></li>
-                                <li><Link to="/dashboard/myOrders">My Buyers</Link></li>
+                                <li><Link to="/dashboard/addAProduct">Add A Product</Link></li>
+                                <li><Link to="/dashboard/myProducts">My Products</Link></li>
+                                <li><Link to="/dashboard/myBuyers">My Buyers</Link></li>
                             </>
                         }
                         {
