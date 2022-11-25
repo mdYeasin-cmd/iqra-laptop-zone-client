@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
+import toast from 'react-hot-toast';
 
 const SignUp = () => {
 
-    const { createUser } = useContext(AuthContext);
+    const { createUser, profileUpdate } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const handleSignUp = (event) => {
         event.preventDefault();
@@ -18,9 +20,27 @@ const SignUp = () => {
         createUser(email, password)
             .then(result => {
                 const user = result.user;
+                updateProfile({
+                    displayName: name,
+                    photoURL: photoURL
+                })
                 console.log(user);
+                navigate('/');
+                toast.success('Successfully Sign Up');
             })
-            .catch(error => console.error(error));
+            .catch(error => {
+                toast.error(error.message);
+            });
+
+        const updateProfile = (profileInfo) => {
+            profileUpdate(profileInfo)
+                .then(() => {
+
+                })
+                .catch(error => {
+                    toast.error(error.message);
+                })
+        }
 
     }
 

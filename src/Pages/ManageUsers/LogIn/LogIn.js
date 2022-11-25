@@ -1,18 +1,47 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import './LonIn.css';
+import { AuthContext } from '../../../contexts/AuthProvider';
+import toast from 'react-hot-toast';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 const LogIn = () => {
+
+    const { logIn, providerLogIn } = useContext(AuthContext);
+    const googleProvider = new GoogleAuthProvider();
+    const navigate = useNavigate();
+
     const handleLogIn = (event) => {
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password);
+
+        logIn(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                navigate('/');
+                toast.success('Successfully Log In');
+            })
+            .catch(error => {
+                toast.error(error.message);
+            });
+
     }
 
     const handleSignInWithGoogle = () => {
+        providerLogIn(googleProvider)
+        .then(result => {
+            const user = result.user;
+            console.log(user);
+            toast.success('Successfully Log In');
+        })
+        .catch(error => {
+            toast.error(error.message);
+        })
 
     }
 

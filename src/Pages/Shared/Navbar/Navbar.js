@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import logo from '../../../assets/Logo/logo.png';
 import { AuthContext } from '../../../contexts/AuthProvider';
+import toast from 'react-hot-toast';
 
 const Navbar = () => {
 
@@ -27,7 +28,7 @@ const Navbar = () => {
     const handleLogOut = () => {
         logOut()
             .then(() => { 
-                
+                toast.success('Your are successfully log out.');
             })
             .catch(error => console.error(error));
     }
@@ -57,6 +58,7 @@ const Navbar = () => {
                 {
                     user && user.uid ?
                         <>
+                            <p className="mr-3 font-medium">{user.displayName}</p>
                             <button onClick={handleLogOut} className="btn bg-red-700 hover:bg-red-600 border-0 btn-sm">Log Out</button>
                         </> :
                         <>
