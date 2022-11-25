@@ -43,8 +43,12 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <button className="btn bg-red-700 hover:bg-red-600 border-0 btn-sm mr-2">Sign Up</button>
-                <button className="btn bg-red-700 hover:bg-red-600 border-0 btn-sm">Log In</button>
+                <Link to="/signUp">
+                    <button className="btn bg-red-700 hover:bg-red-600 border-0 btn-sm mr-2">Sign Up</button>
+                </Link>
+                <Link to="/logIn">
+                    <button className="btn bg-red-700 hover:bg-red-600 border-0 btn-sm">Log In</button>
+                </Link>
             </div>
         </div>
     );
