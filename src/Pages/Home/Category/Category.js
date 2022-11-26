@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Category = ({ category }) => {
 
@@ -9,9 +10,10 @@ const Category = ({ category }) => {
             </figure>
             <div className="card-body">
                 <h2 className="card-title justify-center text-3xl">{category.categroyName}</h2>
-                {/* <p>If a dog chews shoes whose shoes does he choose?</p> */}
                 <div className="card-actions">
-                    <button className="btn border-0 bg-red-700 hover:bg-red-600 w-full">View Products</button>
+                    <Link to={`/category/${category.categoryId}`} className="w-full">
+                        <button className="btn border-0 bg-red-700 hover:bg-red-600 w-full">View Products</button>
+                    </Link>
                 </div>
             </div>
         </div>

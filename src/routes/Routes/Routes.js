@@ -12,6 +12,7 @@ import ReportedItems from "../../Pages/Dashboard/ReportedItems/ReportedItems";
 import Home from "../../Pages/Home/Home/Home";
 import LogIn from "../../Pages/ManageUsers/LogIn/LogIn";
 import SignUp from "../../Pages/ManageUsers/SignUp/SignUp";
+import Products from "../../Pages/Products/Products/Products";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const routes = createBrowserRouter([
@@ -22,6 +23,11 @@ export const routes = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>
+            },
+            {
+                path: 'category/:id',
+                element: <Products></Products>,
+                loader: ({ params }) => fetch(`http://localhost:5000/categories/${params.id}`)
             },
             {
                 path: '/blog',
