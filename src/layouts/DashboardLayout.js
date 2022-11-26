@@ -40,9 +40,9 @@ const DashboardLayout = () => {
                         }
                         {
                             user && user.uid && isUserRole === 'admin' && <>
-                                <li><Link to="/dashboard/myOrders">All Sellers</Link></li>
-                                <li><Link to="/dashboard/myOrders">All Buyers</Link></li>
-                                <li><Link to="/dashboard/myOrders">Reported Items</Link></li>
+                                <li><Link to="/dashboard/allSellers">All Sellers</Link></li>
+                                <li><Link to="/dashboard/allBuyers">All Buyers</Link></li>
+                                <li><Link to="/dashboard/reportedItems">Reported Items</Link></li>
                             </>
                         }
                     </ul>
