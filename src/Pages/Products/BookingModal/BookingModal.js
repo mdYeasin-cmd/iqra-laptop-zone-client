@@ -26,10 +26,12 @@ const BookingModal = ({ bookNow }) => {
             meetingLocation
         }
 
-        fetch(``, {
+        console.log(ordersInfo)
+
+        fetch(`http://localhost:5000/orders`, {
             method: 'POST',
             headers: {
-                'content-type': 'applicatin/json',
+                'content-type': 'application/json',
             },
             body: JSON.stringify(ordersInfo)
         })
