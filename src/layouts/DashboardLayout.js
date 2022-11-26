@@ -6,16 +6,18 @@ import Navbar from '../Pages/Shared/Navbar/Navbar';
 
 const DashboardLayout = () => {
 
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const [isUserRole, isUserLoading] = useUserRole(user?.email);
 
-    if(isUserLoading) {
+    if (isUserLoading) {
         return <h2>Loading...</h2>
     }
 
     return (
         <div>
-            <Navbar></Navbar>
+            <div className="bg-slate-50">
+                <Navbar></Navbar>
+            </div>
             <div className="drawer drawer-mobile">
                 <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content">

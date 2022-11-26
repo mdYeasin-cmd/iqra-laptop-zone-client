@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { AiFillCheckCircle } from 'react-icons/ai';
 
-const Product = ({ product }) => {
+const Product = ({ product, setBookNow }) => {
 
-    const { productName, photoURL, resalePrice } = product;
-    console.log(Product);
+    
+
+    const {
+        postTime,
+        productName,
+        photoURL,
+        resalePrice,
+        orginalPrice,
+        productCondition,
+        phoneNumber,
+        location,
+        description,
+        yearOfUse,
+        sellerName
+    } = product;
+
     return (
         <div className="card card-compact bg-base-100 shadow-xl p-5 mt-5">
             <figure>
@@ -12,13 +27,45 @@ const Product = ({ product }) => {
             <div className="card-body">
                 <h2 className="card-title">{productName}</h2>
                 <p>
+                    <span className="font-semibold">Posting Time:</span> {postTime}
+                </p>
+                <p>
                     <span className="font-semibold">Product Name:</span> {productName}
                 </p>
                 <p>
                     <span className="font-semibold">Resale Price:</span> {resalePrice}
                 </p>
+                <p>
+                    <span className="font-semibold">Orginal Price:</span> {orginalPrice}
+                </p>
+                <p>
+                    <span className="font-semibold">Product Condition:</span> {productCondition}
+                </p>
+                <p>
+                    <span className="font-semibold">Phone Number</span> {phoneNumber}
+                </p>
+                <p>
+                    <span className="font-semibold">Location:</span> {location}
+                </p>
+                <p>
+                    <span className="font-semibold">Description:</span> {description}
+                </p>
+                <p>
+                    <span className="font-semibold">Year of use:</span> {yearOfUse}
+                </p>
+                <p className="flex items-center">
+                    <span className="font-semibold">Seller Name:</span>
+                    <span>{sellerName}</span>
+                    <AiFillCheckCircle className="text-blue-600 ml-1"></AiFillCheckCircle>
+                </p>
                 <div className="card-actions justify-end">
-                    <button className="btn btn-primary">Book Now</button>
+                    {/* <button className="btn btn-primary">Book Now</button> */}
+                    <label
+                        // disabled={slots.length === 0}
+                        htmlFor="booking-modal"
+                        className="btn bg-red-700 border-0 hover:bg-red-600 text-white"
+                        onClick={() => setBookNow(product)}
+                    >Book Now</label>
                 </div>
             </div>
         </div>
