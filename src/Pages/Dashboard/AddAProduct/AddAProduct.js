@@ -11,6 +11,7 @@ const AddAProduct = () => {
         const time = new Date();
         const postTime = time.toLocaleString();
         const form = event.target;
+        const category_id = form.productCategory.value;
         const productName = form.productName.value;
         const photoURL = form.photoURL.value;
         const resalePrice = form.resalePrice.value;
@@ -18,7 +19,6 @@ const AddAProduct = () => {
         const productCondition = form.productCondition.value;
         const phoneNumber = form.phoneNumber.value;
         const location = form.location.value;
-        const productCategory = form.productCategory.value;
         const description = form.description.value;
         const yearOfUse = form.yearOfUse.value;
         const sellerName = form.sellerName.value;
@@ -32,7 +32,7 @@ const AddAProduct = () => {
             productCondition,
             phoneNumber,
             location,
-            productCategory,
+            category_id,
             description,
             yearOfUse,
             sellerName
@@ -40,6 +40,7 @@ const AddAProduct = () => {
         );
 
         const product = {
+            category_id,
             postTime,
             productName,
             photoURL,
@@ -48,7 +49,6 @@ const AddAProduct = () => {
             productCondition,
             phoneNumber,
             location,
-            productCategory,
             description,
             yearOfUse,
             sellerName
@@ -159,9 +159,9 @@ const AddAProduct = () => {
                     </label>
                     <select name="productCategory" className="select select-bordered w-full">
                         <option disabled defaultValue>--Pick a option--</option>
-                        <option>HP</option>
-                        <option>DELL</option>
-                        <option>ASUS</option>
+                        <option value="hp_brand_01">HP</option>
+                        <option value="dell_brand_02">DELL</option>
+                        <option value="assus_brand_03">ASUS</option>
                     </select>
                 </div>
 

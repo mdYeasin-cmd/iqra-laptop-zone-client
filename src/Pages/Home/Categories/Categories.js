@@ -1,29 +1,22 @@
-import React from 'react';
-import hp from '../../../assets/Categories/hp.png';
-import dell from '../../../assets/Categories/dell.png';
-import asus from '../../../assets/Categories/asus.jpg';
+import React, { useEffect, useState } from 'react';
 import Category from '../Category/Category';
 
 
 const Categories = () => {
 
-    const categories = [
-        {
-            categoryId: 'hp_brand_01',
-            categroyName: 'HP',
-            image: hp
-        },
-        {
-            categoryId: 'dell_brand_02',
-            categroyName: 'DELL',
-            image: dell
-        },
-        {
-            categoryId: 'assus_brand_03',
-            categroyName: 'ASUS',
-            image: asus
-        },
-    ]
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+
+        fetch(`http://localhost:5000/categories`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            setCategories(data);
+        })
+        .catch(error => console.error(error));
+
+    }, []);
 
     return (
         <div className="bg-slate-50">
