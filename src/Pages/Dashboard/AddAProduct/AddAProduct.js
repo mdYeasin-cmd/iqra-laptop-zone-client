@@ -22,22 +22,7 @@ const AddAProduct = () => {
         const description = form.description.value;
         const yearOfUse = form.yearOfUse.value;
         const sellerName = form.sellerName.value;
-
-        console.log(
-            postTime,
-            productName,
-            photoURL,
-            resalePrice,
-            orginalPrice,
-            productCondition,
-            phoneNumber,
-            location,
-            category_id,
-            description,
-            yearOfUse,
-            sellerName
-
-        );
+        const sellerEmail = user?.email;
 
         const product = {
             category_id,
@@ -51,7 +36,8 @@ const AddAProduct = () => {
             location,
             description,
             yearOfUse,
-            sellerName
+            sellerName,
+            sellerEmail
         }
 
         fetch(`http://localhost:5000/products`, {

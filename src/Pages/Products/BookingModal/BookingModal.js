@@ -15,7 +15,7 @@ const BookingModal = ({ bookNow }) => {
         const productName = form.productName.value;
         const productPrice = form.productPrice.value;
         const phoneNumber = form.phoneNumber.value;
-        const meetingLocation = form.meetingLocation.value;
+        const meetingLocation = form.meetingLocation.value; 
 
         const ordersInfo = {
             name,
@@ -42,7 +42,6 @@ const BookingModal = ({ bookNow }) => {
             })
             .catch(error => toast.error(error));
 
-        console.log(name, email, productName, productPrice, phoneNumber, meetingLocation);
 
     }
 
