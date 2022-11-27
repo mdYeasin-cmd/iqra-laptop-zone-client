@@ -23,7 +23,7 @@ export const routes = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <AdProvider><Home></Home></AdProvider>
+                element: <Home></Home>
             },
             {
                 path: 'category/:id',
@@ -58,7 +58,7 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/dashboard/myProducts',
-                element: <AdProvider><MyProducts></MyProducts></AdProvider>
+                element: <MyProducts></MyProducts>
             },
             {
                 path: '/dashboard/myBuyers',

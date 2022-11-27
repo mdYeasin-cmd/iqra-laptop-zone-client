@@ -22,6 +22,7 @@ const AddAProduct = () => {
         const phoneNumber = form.phoneNumber.value;
         const location = form.location.value;
         const description = form.description.value;
+        const yearOfPurchase = form.yearOfPurchase.value;
         const yearOfUse = form.yearOfUse.value;
         const sellerName = form.sellerName.value;
         const sellerEmail = user?.email;
@@ -38,6 +39,7 @@ const AddAProduct = () => {
             location,
             description,
             yearOfUse,
+            yearOfPurchase,
             sellerName,
             sellerEmail
         }
@@ -159,6 +161,17 @@ const AddAProduct = () => {
                         <span className="label-text">Description</span>
                     </label>
                     <textarea name="description" className="textarea textarea-bordered"></textarea>
+                </div>
+
+                <div className="form-control w-full">
+                    <label className="label">
+                        <span className="label-text">Year Of Purchase</span>
+                    </label>
+                    <input
+                        type="text"
+                        name="yearOfPurchase"
+                        className="input input-bordered w-full"
+                    />
                 </div>
 
                 <div className="form-control w-full">

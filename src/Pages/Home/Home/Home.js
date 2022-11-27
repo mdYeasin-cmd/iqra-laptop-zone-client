@@ -7,14 +7,19 @@ import Newsletter from '../Newsletter/Newsletter';
 
 const Home = () => {
 
-    const { product, isAdvertise } = useContext(AdContext);
+    // const { product, isAdvertise } = useContext(AdContext);
+
+    // console.log(product);
+
+    const productStr = localStorage.getItem('advertisedProduct');
+    const product = JSON.parse(productStr);
 
     return (
         <div>
             <Banner></Banner>
             <Categories></Categories>
             {
-                isAdvertise && <Advertise
+                product?.isAdvertise && <Advertise
                     product={product}
                 ></Advertise>
             }
