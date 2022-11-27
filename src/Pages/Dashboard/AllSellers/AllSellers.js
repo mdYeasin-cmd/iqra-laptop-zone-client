@@ -16,6 +16,22 @@ const AllSellers = () => {
         return <h2>Loading...</h2>
     }
 
+    const handleSellerVerification = (id) => {
+        console.log(id);
+        fetch(`http://localhost:5000/sellers/${id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({ isVerified: true })
+        })
+            .then(res => res.json())
+            .then(data => {
+                refetch();
+                console.log(data)
+            });
+    }
+
     const handleDelete = (id) => {
         fetch(`http://localhost:5000/sellers/${id}`, {
             method: 'DELETE'
@@ -51,18 +67,28 @@ const AllSellers = () => {
                                 <td>{seller.name}</td>
                                 <td>{seller.email}</td>
                                 <td>
-                                    <button
-                                        className="btn bg-red-700 hover:bg-red-600 border-0"
-                                    // onClick={() => handleAdvertise(product)}
-                                    >
-                                        Verify
-                                    </button>
+                                    {
+                                        seller.isVerified && <button
+                                            className="btn bg-red-700 hover:bg-red-600 border-0"
+                                            onClick={() => handleSellerVerification(seller._id)}
+                                        >
+                                            Verified
+                                        </button>
+                                    }
+                                    {
+                                        !seller.isVerified && <button
+                                            className="btn bg-red-700 hover:bg-red-600 border-0"
+                                            onClick={() => handleSellerVerification(seller._id)}
+                                        >
+                                            Verify
+                                        </button>
+                                    }
                                 </td>
                                 <td>
 
                                     <button
                                         className="btn bg-red-700 hover:bg-red-600 border-0 ml-3"
-                                    onClick={() => handleDelete(seller._id)}
+                                        onClick={() => handleDelete(seller._id)}
                                     >Delete</button>
                                 </td>
                             </tr>)

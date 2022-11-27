@@ -27,6 +27,7 @@ const AllBuyers = () => {
                 toast.success('Successfully Deleted')
                 refetch();
             })
+
     }
 
 
