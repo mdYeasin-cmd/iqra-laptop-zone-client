@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AiFillCheckCircle } from 'react-icons/ai';
 
 const Product = ({ product, setBookNow }) => {
 
-    
+    const [isVerified, setIsVerified] = useState(false);
 
     const {
         postTime,
@@ -16,8 +16,25 @@ const Product = ({ product, setBookNow }) => {
         location,
         description,
         yearOfUse,
-        sellerName
+        sellerName,
+        sellerEmail
     } = product;
+
+    
+
+    useEffect(() => {
+        if(sellerEmail) {
+            fetch(`http://localhost:5000/seller?email=${sellerEmail}`)
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    setIsVerified(data.isVerified)
+                    // console.log(data.isVerified);
+                })
+        }
+        
+    }, [sellerEmail])
+
 
     return (
         <div className="card card-compact bg-base-100 shadow-xl p-5 mt-5">
@@ -56,16 +73,26 @@ const Product = ({ product, setBookNow }) => {
                 <p className="flex items-center">
                     <span className="font-semibold">Seller Name:</span>
                     <span>{sellerName}</span>
-                    <AiFillCheckCircle className="text-blue-600 ml-1"></AiFillCheckCircle>
+                    {
+                        isVerified && <AiFillCheckCircle className="text-blue-600 ml-1"></AiFillCheckCircle>
+                    }
+
                 </p>
                 <div className="card-actions justify-end">
                     {/* <button className="btn btn-primary">Book Now</button> */}
-                    <label
-                        // disabled={slots.length === 0}
-                        htmlFor="booking-modal"
-                        className="btn bg-red-700 border-0 hover:bg-red-600 text-white"
-                        onClick={() => setBookNow(product)}
-                    >Book Now</label>
+                    {
+                        isVerified && <>
+                            <button
+                                className="btn bg-red-700 border-0 hover:bg-red-600 text-white"
+                            >Report to Admin</button>
+                            <label
+                            // disabled={slots.length === 0}
+                            htmlFor="booking-modal"
+                            className="btn bg-red-700 border-0 hover:bg-red-600 text-white"
+                            onClick={() => setBookNow(product)}
+                        >Book Now</label>
+                        </>
+                    }
                 </div>
             </div>
         </div>
