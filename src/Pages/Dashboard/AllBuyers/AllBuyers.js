@@ -18,17 +18,15 @@ const AllBuyers = () => {
     }
 
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/products/${id}`, {
+        fetch(`http://localhost:5000/buyers/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
             .then(data => {
+                console.log(data);
+                toast.success('Successfully Deleted')
                 refetch();
-                toast.success('Successfully Deleted');
-                console.log(data)
-                localStorage.removeItem('advertisedProduct');
             })
-            .catch(error => console.error(error));
     }
 
 
