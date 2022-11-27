@@ -14,6 +14,7 @@ import Home from "../../Pages/Home/Home/Home";
 import LogIn from "../../Pages/ManageUsers/LogIn/LogIn";
 import SignUp from "../../Pages/ManageUsers/SignUp/SignUp";
 import Products from "../../Pages/Products/Products/Products";
+import ErrorPage from "../../Pages/Shared/ErrorPage/ErrorPage";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const routes = createBrowserRouter([
@@ -77,5 +78,9 @@ export const routes = createBrowserRouter([
                 element: <ReportedItems></ReportedItems>
             }
         ]
+    },
+    {
+        path:'*',
+        element: <ErrorPage></ErrorPage>
     }
 ]);

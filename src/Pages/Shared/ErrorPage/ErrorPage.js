@@ -1,9 +1,10 @@
 import React from 'react';
+import errorImage from '../../../assets/Error/error.jpg'
 
 const ErrorPage = () => {
     return (
         <div>
-            <h2 className="text-4xl">This is error page</h2>
+            <img className="w-full h-screen" src={errorImage} alt="" />
         </div>
     );
 };
