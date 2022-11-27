@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import AdProvider from "../../contexts/AdProvider";
 import DashboardLayout from "../../layouts/DashboardLayout";
 import Main from "../../layouts/Main";
 import Blog from "../../Pages/Blog/Blog";
@@ -22,7 +23,7 @@ export const routes = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <Home></Home>
+                element: <AdProvider><Home></Home></AdProvider>
             },
             {
                 path: 'category/:id',
@@ -57,7 +58,7 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/dashboard/myProducts',
-                element: <MyProducts></MyProducts>
+                element: <AdProvider><MyProducts></MyProducts></AdProvider>
             },
             {
                 path: '/dashboard/myBuyers',

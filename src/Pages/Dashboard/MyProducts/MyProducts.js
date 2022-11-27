@@ -1,12 +1,22 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
+import { AdContext } from '../../../contexts/AdProvider';
 import { AuthContext } from '../../../contexts/AuthProvider';
+import Advertise from '../../Home/Advertise/Advertise';
+
+
 
 const MyProducts = () => {
 
     const { user } = useContext(AuthContext);
     const email = user?.email;
+    const {
+        isAdvertise,
+        product,
+        handleAdvertise
+    } = useContext(AdContext);
+
 
     const { data: products, isLoading, refetch } = useQuery({
         queryKey: ['products', email],
@@ -16,10 +26,6 @@ const MyProducts = () => {
             return data;
         }
     });
-
-    const handleAdvertise = (id) => {
-        console.log(id);
-    }
 
     const handleDelete = (id) => {
         fetch(`http://localhost:5000/products/${id}`, {
@@ -67,8 +73,10 @@ const MyProducts = () => {
                                 <td>
                                     <button
                                         className="btn bg-red-700 hover:bg-red-600 border-0"
-                                        onClick={() => handleAdvertise(product._id)}
-                                    >Advertise</button>
+                                        onClick={() => handleAdvertise(product)}
+                                    >
+                                        Advertise
+                                    </button>
                                     <button
                                         className="btn bg-red-700 hover:bg-red-600 border-0 ml-3"
                                         onClick={() => handleDelete(product._id)}
@@ -82,6 +90,11 @@ const MyProducts = () => {
                     </tbody>
                 </table>
             </div>
+            {
+                isAdvertise && <Advertise
+                    product={product}
+                ></Advertise>
+            }
         </div>
     );
 };
