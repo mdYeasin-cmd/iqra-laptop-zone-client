@@ -3,7 +3,7 @@ import React from 'react';
 
 const AllSellers = () => {
 
-    const { data: sellers, isLoading } = useQuery({
+    const { data: sellers, isLoading, refetch } = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
             const res = await fetch(`http://localhost:5000/sellers`);
@@ -16,10 +16,20 @@ const AllSellers = () => {
         return <h2>Loading...</h2>
     }
 
+    const handleDelete = (id) => {
+        fetch(`http://localhost:5000/sellers/${id}`, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                refetch();
+            })
+    }
+
     return (
         <div>
             <h2 className="text-4xl text-center mt-3 font-semibold">All Sellers</h2>
-            <p>{sellers.length}</p>
             <div className="overflow-x-auto">
                 <table className="table mt-4 mx-auto shadow-lg">
 
@@ -52,7 +62,7 @@ const AllSellers = () => {
 
                                     <button
                                         className="btn bg-red-700 hover:bg-red-600 border-0 ml-3"
-                                    // onClick={() => handleDelete(product._id)}
+                                    onClick={() => handleDelete(seller._id)}
                                     >Delete</button>
                                 </td>
                             </tr>)
