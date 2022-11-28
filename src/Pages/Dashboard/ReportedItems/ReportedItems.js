@@ -8,14 +8,14 @@ const ReportedItems = () => {
     // const [reportedProducts, setReportedProducts] = useState([]);
 
     // useEffect(() => {
-    //     axios.get('http://localhost:5000/reportedProducts')
+    //     axios.get('https://iqra-laptop-zone-server.vercel.app/reportedProducts')
     //         .then(res => setReportedProducts(res.data))
     // }, []);
 
     const { data: reportedProducts, isLoading, refetch } = useQuery({
         queryKey: ['reportedPorducts'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/reportedProducts`);
+            const res = await fetch(`https://iqra-laptop-zone-server.vercel.app/reportedProducts`);
             const data = await res.json();
             return data;
         }
@@ -29,7 +29,7 @@ const ReportedItems = () => {
     const { data: products, isLoading, refetch } = useQuery({
         queryKey: ['products', email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/products?email=${email}`);
+            const res = await fetch(`https://iqra-laptop-zone-server.vercel.app/products?email=${email}`);
             const data = await res.json();
             return data;
         }
@@ -38,7 +38,7 @@ const ReportedItems = () => {
     */
 
     const handleDelete = (id) => {
-        axios.delete(`http://localhost:5000/products/${id}`)
+        axios.delete(`https://iqra-laptop-zone-server.vercel.app/products/${id}`)
             .then((res) => {
                 refetch();
                 console.log(res.data);

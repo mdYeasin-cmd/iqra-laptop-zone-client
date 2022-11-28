@@ -44,7 +44,7 @@ const AddAProduct = () => {
             sellerEmail
         }
 
-        fetch(`http://localhost:5000/products`, {
+        fetch(`https://iqra-laptop-zone-server.vercel.app/products`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

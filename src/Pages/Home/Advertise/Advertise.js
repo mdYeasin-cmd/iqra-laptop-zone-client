@@ -1,10 +1,7 @@
-import React, { useContext } from 'react';
-import advertiseBanner from '../../../assets/Advertise/advertise_banner.png'
-import { AdContext } from '../../../contexts/AdProvider';
+import React from 'react';
 
 const Advertise = ({ product }) => {
 
-    // const {product} = useContext(AdContext);
     const { productName, description, photoURL } = product;
 
     return (

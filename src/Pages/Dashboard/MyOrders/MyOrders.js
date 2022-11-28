@@ -11,7 +11,7 @@ const MyOrders = () => {
     const { data: orders = [], isLoading, refetch } = useQuery({
         queryKey: ['orders'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/orders?email=${user?.email}`);
+            const res = await fetch(`https://iqra-laptop-zone-server.vercel.app/orders?email=${user?.email}`);
             const data = await res.json();
             return data;
         }

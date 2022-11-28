@@ -8,7 +8,7 @@ const Categories = () => {
 
     useEffect(() => {
 
-        fetch(`http://localhost:5000/categories`)
+        fetch(`https://iqra-laptop-zone-server.vercel.app/categories`)
         .then(res => res.json())
         .then(data => {
             console.log(data);

@@ -4,7 +4,7 @@ const saveUser = (name, email, userRole) => {
         email,
         userRole
     }
-    fetch(`http://localhost:5000/users`, {
+    fetch(`https://iqra-laptop-zone-server.vercel.app/users`, {
         method: 'POST',
         headers: {
             'content-type': 'application/json'

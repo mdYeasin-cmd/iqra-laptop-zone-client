@@ -8,7 +8,7 @@ const useUserRole = email => {
     useEffect(() => {
 
         if (email) {
-            fetch(`http://localhost:5000/users?email=${email}`)
+            fetch(`https://iqra-laptop-zone-server.vercel.app/users?email=${email}`)
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);

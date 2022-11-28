@@ -24,7 +24,7 @@ const Product = ({ product, setBookNow }) => {
 
     useEffect(() => {
         if(sellerEmail) {
-            fetch(`http://localhost:5000/seller?email=${sellerEmail}`)
+            fetch(`https://iqra-laptop-zone-server.vercel.app/seller?email=${sellerEmail}`)
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
@@ -37,7 +37,7 @@ const Product = ({ product, setBookNow }) => {
 
     const handleReportToAdmin = (product) => {
         console.log(product);
-        fetch(`http://localhost:5000/reportedProducts/${product._id}`, {
+        fetch(`https://iqra-laptop-zone-server.vercel.app/reportedProducts/${product._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

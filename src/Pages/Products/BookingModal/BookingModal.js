@@ -30,7 +30,7 @@ const BookingModal = ({ bookNow }) => {
 
         console.log(ordersInfo)
 
-        fetch(`http://localhost:5000/orders`, {
+        fetch(`https://iqra-laptop-zone-server.vercel.app/orders`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

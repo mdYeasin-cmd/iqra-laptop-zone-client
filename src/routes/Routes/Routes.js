@@ -1,5 +1,4 @@
 import { createBrowserRouter } from "react-router-dom";
-import AdProvider from "../../contexts/AdProvider";
 import DashboardLayout from "../../layouts/DashboardLayout";
 import Main from "../../layouts/Main";
 import Blog from "../../Pages/Blog/Blog";
@@ -29,8 +28,8 @@ export const routes = createBrowserRouter([
             },
             {
                 path: 'category/:id',
-                element: <Products></Products>,
-                loader: ({ params }) => fetch(`http://localhost:5000/categories/${params.id}`)
+                element: <PrivateRoute><Products></Products></PrivateRoute>,
+                loader: ({ params }) => fetch(`https://iqra-laptop-zone-server.vercel.app/categories/${params.id}`)
             },
             {
                 path: '/blog',
@@ -57,7 +56,7 @@ export const routes = createBrowserRouter([
             {
                 path: '/dashboard/payment/:id',
                 element: <Payment></Payment>,
-                loader: ({ params }) => fetch(`http://localhost:5000/orders/${params.id}`)
+                loader: ({ params }) => fetch(`https://iqra-laptop-zone-server.vercel.app/orders/${params.id}`)
             },
             {
                 path: '/dashboard/addAProduct',

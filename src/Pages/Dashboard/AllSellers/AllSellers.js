@@ -6,7 +6,7 @@ const AllSellers = () => {
     const { data: sellers, isLoading, refetch } = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/sellers`);
+            const res = await fetch(`https://iqra-laptop-zone-server.vercel.app/sellers`);
             const data = await res.json();
             return data;
         }
@@ -18,7 +18,7 @@ const AllSellers = () => {
 
     const handleSellerVerification = (seller) => {
         console.log(seller._id);
-        fetch(`http://localhost:5000/sellers/${seller._id}`, {
+        fetch(`https://iqra-laptop-zone-server.vercel.app/sellers/${seller._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -34,7 +34,7 @@ const AllSellers = () => {
     }
 
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/sellers/${id}`, {
+        fetch(`https://iqra-laptop-zone-server.vercel.app/sellers/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

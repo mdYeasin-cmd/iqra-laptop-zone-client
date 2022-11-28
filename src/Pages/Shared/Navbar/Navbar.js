@@ -11,7 +11,7 @@ const Navbar = () => {
     const [responsibleUser, setResponsibleUser] = useState({});
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/users?email=${user?.email}`)
+        axios.get(`https://iqra-laptop-zone-server.vercel.app/users?email=${user?.email}`)
             .then(res => setResponsibleUser(res.data));
     }, [user?.email]);
 
