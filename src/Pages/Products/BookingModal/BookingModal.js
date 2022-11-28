@@ -5,7 +5,8 @@ import { AuthContext } from '../../../contexts/AuthProvider';
 const BookingModal = ({ bookNow }) => {
 
     const { user } = useContext(AuthContext);
-    const { productName, resalePrice } = bookNow;
+    const { productName, resalePrice, photoURL } = bookNow;
+    console.log(bookNow);
 
     const handleBooking = (event) => {
         event.preventDefault();
@@ -23,7 +24,8 @@ const BookingModal = ({ bookNow }) => {
             productName,
             productPrice,
             phoneNumber,
-            meetingLocation
+            meetingLocation,
+            productImage: photoURL
         }
 
         console.log(ordersInfo)
@@ -38,7 +40,7 @@ const BookingModal = ({ bookNow }) => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                toast.success('Order successfully submited');
+                toast.success('Booked successfully submited');
             })
             .catch(error => toast.error(error));
 
@@ -101,7 +103,7 @@ const BookingModal = ({ bookNow }) => {
                             <input
                                 type="text"
                                 name="productPrice"
-                                defaultValue={`${resalePrice}Tk`}
+                                defaultValue={`${resalePrice} Tk`}
                                 className="input w-full input-bordered"
                                 disabled
                             />

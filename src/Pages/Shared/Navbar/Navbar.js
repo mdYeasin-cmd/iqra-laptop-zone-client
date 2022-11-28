@@ -1,12 +1,19 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import logo from '../../../assets/Logo/logo.png';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import toast from 'react-hot-toast';
+import axios from 'axios';
 
 const Navbar = () => {
 
     const { user, logOut } = useContext(AuthContext);
+    const [responsibleUser, setResponsibleUser] = useState({});
+
+    useEffect(() => {
+        axios.get(`http://localhost:5000/users?email=${user?.email}`)
+            .then(res => setResponsibleUser(res.data));
+    }, [user?.email]);
 
     const activeMenuDesign = {
         background: 'rgb(185 28 28)',
@@ -31,7 +38,7 @@ const Navbar = () => {
 
     const handleLogOut = () => {
         logOut()
-            .then(() => { 
+            .then(() => {
                 toast.success('Your are successfully log out.');
             })
             .catch(error => console.error(error));
@@ -65,7 +72,10 @@ const Navbar = () => {
                 {
                     user && user.uid ?
                         <>
-                            <p className="mr-3 font-medium">{user.displayName}</p>
+                            <p className="mr-3 font-medium">
+                                {user.displayName}
+                                <small className="text-xs">({responsibleUser.userRole})</small>
+                            </p>
                             <button onClick={handleLogOut} className="btn bg-red-700 hover:bg-red-600 border-0 btn-sm">Log Out</button>
                         </> :
                         <>
