@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import useUserRole from '../../../hooks/useUserRole';
 
@@ -16,7 +17,7 @@ const MyOrders = () => {
         }
     });
 
-    if(isLoading) {
+    if (isLoading) {
         return <h2>Loading...</h2>
     }
 
@@ -24,7 +25,7 @@ const MyOrders = () => {
 
     return (
         <div>
-            
+
             <h2 className="text-4xl text-center mt-3 font-semibold">My Orders</h2>
             <div className="overflow-x-auto">
                 <table className="table mt-4 mx-auto shadow-lg">
@@ -51,10 +52,12 @@ const MyOrders = () => {
                                 <td>{order.productPrice}</td>
                                 <td>
 
-                                    <button
-                                        className="btn bg-red-700 hover:bg-red-600 border-0 ml-3"
+                                    <Link to={`/dashboard/payment/${order._id}`}>
+                                        <button
+                                            className="btn bg-red-700 hover:bg-red-600 border-0 ml-3"
                                         // onClick={() => handleDelete(order._id)}
-                                    >PAY</button>
+                                        >PAY</button>
+                                    </Link>
                                 </td>
                             </tr>)
                         }
@@ -64,7 +67,7 @@ const MyOrders = () => {
                     </tbody>
                 </table>
             </div>
-        
+
         </div>
     );
 };
