@@ -33,7 +33,22 @@ const Product = ({ product, setBookNow }) => {
                 })
         }
         
-    }, [sellerEmail])
+    }, [sellerEmail]);
+
+    const handleReportToAdmin = (product) => {
+        console.log(product);
+        fetch(`http://localhost:5000/reportedProducts/${product._id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({isReported: true})
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            })
+    }
 
 
     return (
@@ -83,6 +98,7 @@ const Product = ({ product, setBookNow }) => {
                     {
                         isVerified && <>
                             <button
+                                onClick={() => handleReportToAdmin(product)}
                                 className="btn bg-red-700 border-0 hover:bg-red-600 text-white"
                             >Report to Admin</button>
                             <label
